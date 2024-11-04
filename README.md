@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository provides a framework for analyzing polling data aimed at predicting Donald Trump's percentage support in the upcoming 2024 U.S. presidential election. 
+Welcome to the "Forecasting Support for Trump in the 2024 U.S. Election" repository. This project is dedicated to analyzing and predicting Donald Trump's percentage support in the upcoming 2024 U.S. presidential election by leveraging polling data and advanced statistical modeling techniques. The repository serves as a comprehensive framework that encompasses data acquisition, simulation, cleaning, analysis, modeling, and documentation to facilitate a thorough understanding of the factors influencing voter sentiment.
 
 ## File Structure
 
