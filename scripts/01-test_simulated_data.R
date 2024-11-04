@@ -5,70 +5,45 @@
 # Contact: jess.liang@mail.utoronto.ca, zhanjierui1@gmail.com
 # License: MIT
 # Pre-requisites: 
-  # - The `tidyverse` package must be installed and loaded
+  # - The `tidyverse` and `testthat` packages must be installed and loaded
   # - 00-simulate_data.R must have been run
 # Any other information needed? Ensure you are in the `2024-US-Election-Prediction` rproj
 
 
 #### Workspace setup ####
 library(tidyverse)
+library(testthat)
 
 simulated_data <- read_csv("data/00-simulated_data/simulated_data.csv")
 
-# Test if the data was successfully loaded
-if (exists("simulated_data")) {
-  message("Test Passed: The dataset was successfully loaded.")
-} else {
-  stop("Test Failed: The dataset could not be loaded.")
-}
+test_that("Dataset is successfully loaded", {
+  expect_true(exists("simulated_data"))
+})
 
-#### Test data ####
+test_that("Dataset has the correct number of columns and rows", {
+  # Check number of columns
+  expect_equal(ncol(simulated_data), 5)
+  
+  # Check number of rows
+  expect_equal(nrow(simulated_data), 500)
+})
 
-# Check if the dataset has the expected number of columns (5)
-if (ncol(simulated_data) == 5) {
-  message("Test Passed: The dataset has 5 columns.")
-} else {
-  stop("Test Failed: The dataset does not have 5 columns.")
-}
+test_that("Dataset has sufficient diversity in 'state' and 'pollster' columns", {
+  # Check unique values in 'state' column
+  expect_gte(n_distinct(simulated_data$state), 2)
+  
+  # Check unique values in 'pollster' column
+  expect_gte(n_distinct(simulated_data$pollster), 2)
+})
 
-# Test the dataset has 500 rows
-if (nrow(simulated_data) == 500) {
-  message("Test Passed: The dataset has 500 rows.")
-} else {
-  stop("Test Failed: The dataset does not have 500 rows.")
-}
+test_that("Percentage values are within the valid range (0 to 100)", {
+  expect_true(all(simulated_data$pct >= 0 & simulated_data$pct <= 100))
+})
 
-# Test the 'state' column has at least two unique values for diversity
-if (n_distinct(simulated_data$state) >= 2) {
-  message("Test Passed: The 'state' column contains at least two unique values.")
-} else {
-  stop("Test Failed: The 'state' column contains less than two unique values.")
-}
+test_that("Dataset contains no missing values", {
+  expect_true(all(!is.na(simulated_data)))
+})
 
-# Test the 'pollster' column has at least two unique values for diversity
-if (n_distinct(simulated_data$pollster) >= 2) {
-  message("Test Passed: The 'pollster' column contains at least two unique values.")
-} else {
-  stop("Test Failed: The 'pollster' column contains less than two unique values.")
-}
-
-# Test all percentage values are within a valid range (0 to 100)
-if (all(simulated_data$pct >= 0 & simulated_data$pct <= 100)) {
-  message("Test Passed: All pct values are between 0 and 100.")
-} else {
-  stop("Test Failed: Some pct values are outside the range 0 to 100.")
-}
-
-# Test for any missing values in the dataset
-if (all(!is.na(simulated_data))) {
-  message("Test Passed: No missing values in the dataset.")
-} else {
-  stop("Test Failed: The dataset contains missing values.")
-}
-
-# Test no empty strings in 'state' or 'pollster' columns
-if (all(simulated_data$state != "" & simulated_data$pollster != "")) {
-  message("Test Passed: No empty strings in 'state' or 'pollster' columns.")
-} else {
-  stop("Test Failed: Empty strings found in 'state' or 'pollster' columns.")
-}
+test_that("No empty strings in 'state' or 'pollster' columns", {
+  expect_true(all(simulated_data$state != "" & simulated_data$pollster != ""))
+})

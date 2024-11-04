@@ -1,13 +1,13 @@
 ---
 title: "Polling Insights for the 2024 U.S. Election: Predicting Support for Donald Trump"
-subtitle: "Investigating the impact of timing, geography, and methodology on voter sentiment"
+subtitle: "Timing, Geography, and Poll Quality Affect Donald Trump's Support Levels"
 author: 
   - Jing Liang
   - Jierui Zhan
 thanks: "Code and data are available at: [https://github.com/RohanAlexander/starter_folder](https://github.com/RohanAlexander/starter_folder]."
 date: today
 date-format: long
-abstract: "This paper analyzes the factors influencing Donald Trump’s percentage support in the lead-up to the 2024 U.S. presidential election, focusing on variables such as poll end date, state, pollster, and poll score. Our findings reveal significant variations in support levels based on geographic location and poll quality, indicating that higher-quality polls tend to report lower support for Trump. This research underscores the importance of critically evaluating polling methodologies to avoid misleading interpretations of public opinion. Ultimately, our work enhances understanding of the complex dynamics shaping voter sentiment, contributing to more informed political discourse in an election year marked by intense scrutiny of polling accuracy."
+abstract: "This study examines factors affecting Donald Trump’s support levels before the 2024 U.S. presidential election, including poll end date, state, pollster, and poll quality. We find significant variations in support based on geographic location and poll quality, with higher-quality polls reporting lower support for Trump. These findings highlight the need to critically evaluate polling methodologies for accurate public opinion interpretations. Our work enhances understanding of voter sentiment dynamics, supporting informed political discourse amid scrutiny of polling accuracy."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -40,7 +40,7 @@ The structure of this paper is organized as follows. @sec-data introduces the da
 
 For this analysis, we employed the R programming language [@citeR] to examine polling data on public sentiment before the election. Our dataset, sourced from FiveThirtyEight [@fivethirtyeight2024], offers a detailed snapshot of evolving public opinion. We explored key influences on percentage support, including the timing of the polls, pollster characteristics, and geographic differences.
 
-Several `R` packages were instrumental in performing data manipulation, modeling, and visualization. `Tidyverse` was the backbone for organizing and analyzing the data efficiently, allowing seamless integration of multiple tasks [@thereferencecanbewhatever]. `Here` streamlined file path handling, ensuring smooth data access across systems [@citehere]. We relied on `Janitor` for robust data cleaning, helping identify and fix potential inconsistencies [@citejanitor], and `Lubridate` facilitated the manipulation of time-related variables [@citelubridate]. Additionally, `Arrow` provided fast and memory-efficient access to large datasets, a critical factor for managing extensive polling data [@citearrow]. The structure of the codebase and workflow adhered to the best practices outlined in @tellingstories.
+Several `R` packages were instrumental in performing data manipulation, modeling, and visualization. `tidyverse` was the backbone for organizing and analyzing the data efficiently, allowing seamless integration of multiple tasks [@thereferencecanbewhatever]. `here` streamlined file path handling, ensuring smooth data access across systems [@citehere]. We relied on `janitor` for robust data cleaning, helping identify and fix potential inconsistencies [@citejanitor], and `lubridate` facilitated the manipulation of time-related variables [@citelubridate]. Additionally, `arrow` provided fast and memory-efficient access to large datasets, a critical factor for managing extensive polling data [@citearrow]. Finally, `testthat` facilitates efficient unit testing on the simulated and the analysis datasets. The structure of the codebase and workflow adhered to the best practices outlined in @tellingstories.
 
 ## Measurement
 	
